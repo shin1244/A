@@ -25,7 +25,7 @@ function CompanyScreen() {
       })
   }, [])
 
-
+  // ㅎㅇㅎㅇ
   return (
     <View style={styles.container}>
       <ScrollView>
