@@ -19,7 +19,7 @@ func (s *sqlHandler) GetCompanies() []*Company {
 	}
 	for rows.Next() {
 		company := &Company{}
-		err := rows.Scan(&company.ID, &company.Name, &company.Year, &company.Year, &company.Image)
+		err := rows.Scan(&company.CompanyID, &company.CompanyName, &company.CompanyYear, &company.Rating, &company.CompanyLogo)
 		if err != nil {
 			panic(err)
 		}
@@ -30,20 +30,20 @@ func (s *sqlHandler) GetCompanies() []*Company {
 }
 
 func (s *sqlHandler) AddCompany(company *Company) *Company {
-	rst, err := s.db.Exec("INSERT INTO company_table (name, year, image) VALUES (?, ?)", company.Name, company.Year, company.Image)
+	rst, err := s.db.Exec("INSERT INTO company_table (company_name, company_year, avgrating, company_logo) VALUES (?, ?, ?, ?)", company.CompanyName, company.CompanyYear, company.Rating, company.CompanyLogo)
 	if err != nil {
 		panic(err)
 	}
 
 	id, _ := rst.LastInsertId()
 
-	company.ID = int(id)
+	company.CompanyID = int(id)
 
 	return company
 }
 
 func (s *sqlHandler) RemoveCompany(id int) bool {
-	rst, err := s.db.Exec("DELETE FROM company WHERE id=?", id)
+	rst, err := s.db.Exec("DELETE FROM company WHERE company_id=?", id)
 	if err != nil {
 		panic(err)
 	}

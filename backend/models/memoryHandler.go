@@ -14,7 +14,7 @@ func (m *memoryHandler) GetCompanies() []*Company {
 
 func (m *memoryHandler) AddCompany(company *Company) *Company {
 	id := len(m.companyMap) + 1
-	company.ID = id
+	company.CompanyID = id
 	m.companyMap[id] = company
 	return company
 }

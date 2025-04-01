@@ -1,10 +1,11 @@
 package models
 
 type Company struct {
-	ID    int    `json:"id"`
-	Name  string `json:"name"`
-	Year  int    `json:"year"`
-	Image []byte `json:"image"`
+	CompanyID   int     `json:"company_id"`
+	CompanyName string  `json:"company_name"`
+	CompanyYear int     `json:"company_year"`
+	Rating      float32 `json:"rating"`
+	CompanyLogo []byte  `json:"company_logo"`
 }
 
 type DBHandler interface {
