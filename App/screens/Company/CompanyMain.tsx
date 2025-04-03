@@ -1,10 +1,10 @@
 import { Text, View, ScrollView, TouchableOpacity } from 'react-native';
 import { useEffect, useState  } from 'react';
-import axios from "axios"
-import { styles } from '../style';
+import { styles } from '../../style';
 import { useNavigation } from '@react-navigation/native';
 import { Float } from 'react-native/Libraries/Types/CodegenTypes';
 import { Ionicons } from '@expo/vector-icons';
+import axios from "axios"
 
 interface Company {
   company_name: string;
@@ -13,8 +13,9 @@ interface Company {
   company_logo: Blob;
 }
 
-function CompanyScreen() {
+function CompanyMain() {
   const [companies, setCompanies] = useState<Company[]>([]);
+
   const navigation = useNavigation();
 
   useEffect(() => {
@@ -25,7 +26,6 @@ function CompanyScreen() {
       })
   }, [])
 
-  // ㅎㅇㅎㅇ
   return (
     <View style={styles.container}>
       <ScrollView>
@@ -33,7 +33,7 @@ function CompanyScreen() {
       </ScrollView>
       <TouchableOpacity
         style={styles.addButton}
-        onPress={() => navigation.navigate('AddCompany')}
+        onPress={() => navigation.navigate('CompanyAdd')}
       >
         <Ionicons name="add-circle" size={50} color="blue" />
       </TouchableOpacity>
@@ -57,4 +57,4 @@ const CompanyList = ({ companies }: { companies: Company[] }) => {
   );
 };
 
-export default CompanyScreen;
+export default CompanyMain;
