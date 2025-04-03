@@ -35,7 +35,8 @@ const CompanyAdd = () => {
     }
   };
   
-  const handleAddCompany = async () => {
+  const handleCompanyAdd = async () => {
+    console.log('테스트 로그');
     const formData = new FormData();
     formData.append('company_name', name);
     formData.append('company_year', year);
@@ -53,7 +54,7 @@ const CompanyAdd = () => {
     }
   
     try {
-      await axios.post('http://222.101.3.77:3000/companies', formData, {
+      await axios.post('http://210.178.44.32:3000/companies', formData, {
         headers: {
           'Content-Type': 'multipart/form-data', // 파일 업로드를 위해 Content-Type을 설정
         },
@@ -83,7 +84,7 @@ const CompanyAdd = () => {
         onChangeText={setYear}
         keyboardType="numeric"
       />
-      <TouchableOpacity style={styles.button} onPress={handleAddCompany}>
+      <TouchableOpacity style={styles.button} onPress={handleCompanyAdd}>
         <Text style={styles.buttonText}>추가</Text>
       </TouchableOpacity>
       <TouchableOpacity

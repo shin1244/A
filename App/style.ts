@@ -39,7 +39,7 @@ export const styles = StyleSheet.create({
       borderRadius: 5,
       paddingHorizontal: 10,
       marginLeft: 20, // 추가: 제목과의 간격 설정
-      marginRight: 20
+      marginRight: 10
     },
     addButton: {
       position: 'absolute',

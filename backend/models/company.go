@@ -5,7 +5,7 @@ type Company struct {
 	CompanyName string  `json:"company_name"`
 	CompanyYear int     `json:"company_year"`
 	Rating      float32 `json:"rating"`
-	CompanyLogo []byte  `json:"company_logo"`
+	CompanyLogo string  `json:"company_logo"`
 }
 
 type DBHandler interface {

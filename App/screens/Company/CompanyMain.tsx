@@ -2,14 +2,13 @@ import { Text, View, ScrollView, TouchableOpacity } from 'react-native';
 import { useEffect, useState  } from 'react';
 import { styles } from '../../style';
 import { useNavigation } from '@react-navigation/native';
-import { Float } from 'react-native/Libraries/Types/CodegenTypes';
 import { Ionicons } from '@expo/vector-icons';
 import axios from "axios"
 
 interface Company {
   company_name: string;
   company_year: number;
-  rating: Float;
+  rating: number;
   company_logo: Blob;
 }
 
@@ -19,7 +18,7 @@ function CompanyMain() {
   const navigation = useNavigation();
 
   useEffect(() => {
-    axios.get("http://222.101.3.77:3000/companies")
+    axios.get("http://210.178.44.32:3000/companies")
       .then(res => {setCompanies(res.data)})
       .catch(error => {
         console.log(error)
@@ -42,7 +41,6 @@ function CompanyMain() {
 }
 
 const CompanyList = ({ companies }: { companies: Company[] }) => {
-  console.log(companies)
   return (
     companies.map((company, index) => (
       <TouchableOpacity
