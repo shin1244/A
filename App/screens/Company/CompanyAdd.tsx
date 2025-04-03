@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, Platform } from 'react-native';
-import axios from 'axios';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import * as ImagePicker from 'expo-image-picker';
+import { Ionicons } from '@expo/vector-icons';
+import axios from 'axios';
 
-const AddCompanyScreen = () => {
+const CompanyAdd = () => {
   const [name, setName] = useState('');
   const [year, setYear] = useState('');
   const [logo, setLogo] = useState<string | null>(null);
@@ -85,6 +86,12 @@ const AddCompanyScreen = () => {
       <TouchableOpacity style={styles.button} onPress={handleAddCompany}>
         <Text style={styles.buttonText}>추가</Text>
       </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.addButton}
+        onPress={() => navigation.navigate('CompanyMain')}
+      >
+        <Ionicons name="caret-back-circle" size={50} color="blue" />
+      </TouchableOpacity>
     </View>
   );
 };
@@ -116,6 +123,11 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 16,
   },
+  addButton: {
+    position: 'absolute',
+    bottom: 20,
+    right: 20,
+  },
 });
 
-export default AddCompanyScreen;
+export default CompanyAdd;

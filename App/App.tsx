@@ -1,8 +1,8 @@
 import React from "react";
 import { Text, View } from "react-native";
 import { styles } from "./style";
-import CompanyScreen from "./screens/CompanyScreen";
-import TabStackScreen from "./routers/TabStackScreen";
+import CompanyMain from "./screens/Company/CompanyMain";
+import TabStackScreen from "./screens/TabStackScreen";
 import { NavigationContainer } from "@react-navigation/native";
 
 export default function App() {
