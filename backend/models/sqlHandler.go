@@ -17,12 +17,14 @@ func (s *sqlHandler) GetCompanies() []*Company {
 	if err != nil {
 		panic(err)
 	}
+	var temp string
 	for rows.Next() {
 		company := &Company{}
-		err := rows.Scan(&company.CompanyID, &company.CompanyName, &company.CompanyYear, &company.Rating, &company.CompanyLogo)
+		err := rows.Scan(&company.CompanyID, &company.CompanyName, &company.CompanyYear, &company.Rating, &temp)
 		if err != nil {
 			panic(err)
 		}
+		company.CompanyLogo = "http://210.178.44.32:3000/uploads/" + temp
 		companies = append(companies, company)
 	}
 

@@ -36,7 +36,6 @@ const CompanyAdd = () => {
   };
   
   const handleCompanyAdd = async () => {
-    console.log('테스트 로그');
     const formData = new FormData();
     formData.append('company_name', name);
     formData.append('company_year', year);
@@ -59,7 +58,7 @@ const CompanyAdd = () => {
           'Content-Type': 'multipart/form-data', // 파일 업로드를 위해 Content-Type을 설정
         },
       });
-      navigation.goBack(); // 회사 추가 후 이전 화면으로 이동
+      navigation.navigate('CompanyMain')
     } catch (error) {
       console.error('회사 추가 실패:', error);
     }

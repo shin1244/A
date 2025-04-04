@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"net/http"
 	"tidy/backend/models"
 
 	"github.com/gorilla/mux"
@@ -18,6 +19,7 @@ func MakeHandler() *CompanyHandler {
 
 	r.HandleFunc("/companies", c.getCompanyHandler).Methods("GET")
 	r.HandleFunc("/companies", c.addCompanyHandler).Methods("POST")
+	r.PathPrefix("/uploads/").Handler(http.StripPrefix("/uploads/", http.FileServer(http.Dir("uploads/"))))
 
 	return c
 }

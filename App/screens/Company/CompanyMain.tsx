@@ -1,4 +1,4 @@
-import { Text, View, ScrollView, TouchableOpacity } from 'react-native';
+import { Text, View, ScrollView, TouchableOpacity, Image } from 'react-native';
 import { useEffect, useState  } from 'react';
 import { styles } from '../../style';
 import { useNavigation } from '@react-navigation/native';
@@ -9,7 +9,7 @@ interface Company {
   company_name: string;
   company_year: number;
   rating: number;
-  company_logo: Blob;
+  company_logo: string;
 }
 
 function CompanyMain() {
@@ -23,6 +23,7 @@ function CompanyMain() {
       .catch(error => {
         console.log(error)
       })
+      console.log(companies)
   }, [])
 
   return (
@@ -47,6 +48,10 @@ const CompanyList = ({ companies }: { companies: Company[] }) => {
         key={index}
         style={styles.CompanyList}
       >
+        <Image 
+        source={{ uri: company.company_logo }}
+        style= {{width:80, height:80}}
+        />
         <Text style={styles.companyText}>{company.company_name}</Text>
         <Text style={styles.companyText}>{company.company_year}</Text>
         <Text style={styles.companyText}>{company.rating}</Text>
