@@ -46,4 +46,8 @@ export const styles = StyleSheet.create({
       bottom: 20,
       right: 20,
     },
+    logo: {
+      width:80, 
+      height:80,
+    }
   });

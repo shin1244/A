@@ -50,7 +50,7 @@ const CompanyList = ({ companies }: { companies: Company[] }) => {
       >
         <Image 
         source={{ uri: company.company_logo }}
-        style= {{width:80, height:80}}
+        style= {styles.logo}
         />
         <Text style={styles.companyText}>{company.company_name}</Text>
         <Text style={styles.companyText}>{company.company_year}</Text>
