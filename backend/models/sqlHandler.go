@@ -20,11 +20,11 @@ func (s *sqlHandler) GetCompanies() []*Company {
 	var temp string
 	for rows.Next() {
 		company := &Company{}
-		err := rows.Scan(&company.CompanyID, &company.CompanyName, &company.CompanyYear, &company.Rating, &temp)
+		err := rows.Scan(&company.CompanyID, &company.CompanyName, &company.CompanyYear, &company.Rating, &temp, &company.CompanyAddress, &company.CompanyBuilding)
 		if err != nil {
 			panic(err)
 		}
-		company.CompanyLogo = "http://210.178.44.32:3000/uploads/" + temp
+		company.CompanyLogo = "http://211.114.210.110:3000/uploads/" + temp
 		companies = append(companies, company)
 	}
 
@@ -32,7 +32,9 @@ func (s *sqlHandler) GetCompanies() []*Company {
 }
 
 func (s *sqlHandler) AddCompany(company *Company) *Company {
-	rst, err := s.db.Exec("INSERT INTO company_table (company_name, company_year, avgrating, company_logo) VALUES (?, ?, ?, ?)", company.CompanyName, company.CompanyYear, company.Rating, company.CompanyLogo)
+	rst, err := s.db.Exec(
+		"INSERT INTO company_table (company_name, company_year, avgrating, company_logo, company_address, company_building) VALUES (?, ?, ?, ?, ?, ?)",
+		company.CompanyName, company.CompanyYear, company.Rating, company.CompanyLogo, company.CompanyAddress, company.CompanyBuilding)
 	if err != nil {
 		panic(err)
 	}

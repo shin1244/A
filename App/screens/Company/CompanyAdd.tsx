@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image  } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import * as ImagePicker from 'expo-image-picker';
 import { Ionicons } from '@expo/vector-icons';
@@ -8,7 +8,10 @@ import axios from 'axios';
 const CompanyAdd = () => {
   const [name, setName] = useState('');
   const [year, setYear] = useState('');
+  const [address, setAddress] = useState('');
+  const [building, setBuilding] = useState('');
   const [logo, setLogo] = useState<string | null>(null);
+  const [description, setDescription] = useState('');
   const navigation = useNavigation();
 
   const requestPermission = async () => {
@@ -39,6 +42,8 @@ const CompanyAdd = () => {
     const formData = new FormData();
     formData.append('company_name', name);
     formData.append('company_year', year);
+    formData.append('company_address', address);
+    formData.append('company_building', building);
     
     if (logo) {
       const uriParts = logo.split('.');
@@ -53,7 +58,7 @@ const CompanyAdd = () => {
     }
   
     try {
-      await axios.post('http://210.178.44.32:3000/companies', formData, {
+      await axios.post('http://211.114.210.110:3000/companies', formData, {
         headers: {
           'Content-Type': 'multipart/form-data', // 파일 업로드를 위해 Content-Type을 설정
         },
@@ -67,8 +72,14 @@ const CompanyAdd = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>회사 추가</Text>
-      <TouchableOpacity style={styles.button} onPress={handleChooseLogo}>
-        <Text style={styles.buttonText}>로고 선택</Text>
+      <TouchableOpacity style={styles.logoContainer} onPress={handleChooseLogo}>
+        {logo ? (
+          <Image source={{ uri: logo }} style={styles.logoImage} />
+        ) : (
+          <View style={styles.emptyLogoBox}>
+            <Text style={{ color: '#aaa' }}>로고 선택</Text>
+          </View>
+        )}
       </TouchableOpacity>
       <TextInput
         style={styles.input}
@@ -82,6 +93,26 @@ const CompanyAdd = () => {
         value={year}
         onChangeText={setYear}
         keyboardType="numeric"
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="회사 주소"
+        value={address}
+        onChangeText={setAddress}
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="대표 건축물"
+        value={building}
+        onChangeText={setBuilding}
+      />
+      <TextInput
+        style={[styles.input, styles.textArea]}
+        placeholder="회사 소개글을 입력하세요 (최대 500자)"
+        value={description}
+        onChangeText={setDescription}
+        multiline
+        maxLength={500}
       />
       <TouchableOpacity style={styles.button} onPress={handleCompanyAdd}>
         <Text style={styles.buttonText}>추가</Text>
@@ -127,6 +158,38 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 20,
     right: 20,
+  },
+  logoContainer: {
+    width: 120,
+    height: 120,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 20,
+    alignSelf: 'center',
+  },
+  logoImage: {
+    width: '100%',
+    height: '100%',
+    borderRadius: 8,
+  },
+  emptyLogoBox: {
+    width: '100%',
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  textArea: {
+    height: 120,
+    textAlignVertical: 'top', // 안드로이드에서 위쪽 정렬
+  },
+  charCount: {
+    alignSelf: 'flex-end',
+    marginBottom: 10,
+    color: '#888',
+    fontSize: 12,
   },
 });
 

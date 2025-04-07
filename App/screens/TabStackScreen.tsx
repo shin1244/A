@@ -9,7 +9,7 @@ const TabStack = createBottomTabNavigator();
 
 const TabStackScreen = () => {
     return (
-        <TabStack.Navigator screenOptions={{headerShown: false}}>
+        <TabStack.Navigator screenOptions={{headerShown: false, tabBarHideOnKeyboard: true}}>
             <TabStack.Screen name="시공사" component={CompanyStackNavigator} />
             <TabStack.Screen name="하도급" component={OutSourceScreen} />
             <TabStack.Screen name="근로자" component={WorkerScreen} />

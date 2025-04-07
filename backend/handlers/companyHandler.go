@@ -25,6 +25,8 @@ func (c *CompanyHandler) addCompanyHandler(w http.ResponseWriter, r *http.Reques
 	var company models.Company
 
 	company.CompanyName = r.FormValue("company_name")
+	company.CompanyAddress = r.FormValue("company_address")
+	company.CompanyBuilding = r.FormValue("company_building")
 	companyYear, err := strconv.Atoi(r.FormValue("company_year"))
 	if err != nil {
 		http.Error(w, "잘못된 연도 형식", http.StatusBadRequest)

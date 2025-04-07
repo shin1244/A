@@ -10,6 +10,8 @@ interface Company {
   company_year: number;
   rating: number;
   company_logo: string;
+  company_address: string;
+  company_building: string;
 }
 
 function CompanyMain() {
@@ -18,7 +20,7 @@ function CompanyMain() {
   const navigation = useNavigation();
 
   useEffect(() => {
-    axios.get("http://210.178.44.32:3000/companies")
+    axios.get("http://211.114.210.110:3000/companies")
       .then(res => {setCompanies(res.data)})
       .catch(error => {
         console.log(error)
@@ -44,20 +46,26 @@ function CompanyMain() {
 const CompanyList = ({ companies }: { companies: Company[] }) => {
   return (
     companies.map((company, index) => (
-      <TouchableOpacity
-        key={index}
-        style={styles.CompanyList}
-      >
-        <Image 
-        source={{ uri: company.company_logo }}
-        style= {styles.logo}
-        />
-        <Text style={styles.companyText}>{company.company_name}</Text>
-        <Text style={styles.companyText}>{company.company_year}</Text>
-        <Text style={styles.companyText}>{company.rating}</Text>
+      <TouchableOpacity key={index} style={styles.CompanyList}>
+        <Image source={{ uri: company.company_logo }} style={styles.logo} />
+        
+        <View style={styles.middleSection}>
+          <Text style={styles.companyName}>{company.company_name}</Text>
+          <View style={styles.ratingRow}>
+            <Text style={styles.star}>⭐</Text>
+            <Text style={styles.ratingText}>{company.rating}</Text>
+          </View>
+        </View>
+
+        <View style={styles.infoSection}>
+          <Text style={styles.infoText}>{company.company_address}</Text>
+          <Text style={styles.infoText}>{company.company_year}</Text>
+          <Text style={styles.infoText}>{company.company_building}</Text>
+        </View>
       </TouchableOpacity>
     ))
   );
 };
+
 
 export default CompanyMain;

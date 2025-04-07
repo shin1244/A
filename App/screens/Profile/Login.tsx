@@ -2,16 +2,14 @@ import React, { useEffect } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import * as Google from 'expo-auth-session/providers/google';
 import * as WebBrowser from "expo-web-browser";
-import * as AuthSession from "expo-auth-session";
 import { AntDesign } from '@expo/vector-icons';
+import { makeRedirectUri } from 'expo-auth-session';
 
 WebBrowser.maybeCompleteAuthSession();
 
 
 export default function Login() {
     // const [request, response, promptAsync] = Google.useAuthRequest({
-    //     webClientId: ,
-    //     androidClientId: ,
     //   });
 
     // useEffect(() => {
@@ -22,17 +20,13 @@ export default function Login() {
     //     }
     //   }, [response]);
     
-    //   const handleGoogleLogin = () => {
-    //     console.log(AuthSession.makeRedirectUri());
-    //     promptAsync();
-    //   };
 
     return (
         <View style={styles.container}>
 
         <Text style={styles.title}>회사 비교 서비스</Text>
 
-        <TouchableOpacity style={styles.googleButton} onPress={handleGoogleLogin}>
+        <TouchableOpacity style={styles.googleButton}>
             <AntDesign name="google" size={24} color="white" />
             <Text style={styles.buttonText}>Google로 로그인</Text>
         </TouchableOpacity>
