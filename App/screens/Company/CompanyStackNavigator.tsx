@@ -28,6 +28,7 @@ const CompanyStackNavigator = () => {
 
       <Stack.Screen 
       name='CompanyDetail' component={ CompanyDetail }
+      options={{headerTitle: "시공사 상세 페이지"}}
        />
     </Stack.Navigator>
   );

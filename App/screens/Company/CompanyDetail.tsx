@@ -2,8 +2,6 @@ import { View, Text, Image, StyleSheet, ScrollView, TextInput } from 'react-nati
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-// type Props = StackScreenProps<CompanyStackParamList, 'CompanyDetail'>;
-
 interface Company {
   company_name: string;
   company_logo: string;
@@ -14,10 +12,11 @@ interface Company {
 
 const CompanyDetail = ({ route }) => {
   const { companyId } = route.params;
+  console.log(companyId)
   const [company, setCompany] = useState<Company | null>(null);
 
   useEffect(() => {
-    axios.get(`http://your-api.com/companies/${companyId}`) // ← 여기서 id 기반으로 요청
+    axios.get(`http://14.53.217.16:3000/companies/${companyId}`) // ← 여기서 id 기반으로 요청
       .then(res => setCompany(res.data))
       .catch(err => console.error(err));
   }, [companyId]);

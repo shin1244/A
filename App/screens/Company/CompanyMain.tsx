@@ -51,7 +51,7 @@ const CompanyList = ({ companies }: { companies: Company[] }) => {
     companies.map((company, index) => (
       <TouchableOpacity 
       key={index} 
-      onPress={() => navigation.navigate('CompanyDetail', { companyId: company.id })}
+      onPress={() => navigation.navigate('CompanyDetail', { companyId: company.company_id })}
       style={styles.CompanyList}>
         <Image source={{ uri: company.company_logo }} style={styles.logo} />
         

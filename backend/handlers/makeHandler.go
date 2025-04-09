@@ -17,7 +17,8 @@ func MakeHandler() *CompanyHandler {
 		db:      models.NewDBHandler(),
 	}
 
-	r.HandleFunc("/companies", c.getCompanyHandler).Methods("GET")
+	r.HandleFunc("/companies", c.getCompaniesHandler).Methods("GET")
+	r.HandleFunc("/companies/{id:[0-9]+}", c.getCompanyHandler).Methods("GET")
 	r.HandleFunc("/companies", c.addCompanyHandler).Methods("POST")
 	r.PathPrefix("/uploads/").Handler(http.StripPrefix("/uploads/", http.FileServer(http.Dir("uploads/"))))
 

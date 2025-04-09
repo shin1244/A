@@ -8,6 +8,8 @@ import (
 	"path/filepath"
 	"strconv"
 	"tidy/backend/models"
+
+	"github.com/gorilla/mux"
 )
 
 type CompanyHandler struct {
@@ -15,9 +17,16 @@ type CompanyHandler struct {
 	db models.DBHandler
 }
 
-func (c *CompanyHandler) getCompanyHandler(w http.ResponseWriter, r *http.Request) {
+func (c *CompanyHandler) getCompaniesHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("회사 리스트 요청 받음")
 	rd.JSON(w, http.StatusOK, c.db.GetCompanies())
+}
+
+func (c *CompanyHandler) getCompanyHandler(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	idStr := vars["id"]
+	fmt.Println(idStr)
+	fmt.Println("회사 상세 페이지 요청 받음")
 }
 
 func (c *CompanyHandler) addCompanyHandler(w http.ResponseWriter, r *http.Request) {
