@@ -24,7 +24,7 @@ func (s *sqlHandler) GetCompanies() []*Company {
 		if err != nil {
 			panic(err)
 		}
-		company.CompanyLogo = "http://211.114.210.110:3000/uploads/" + temp
+		company.CompanyLogo = "http://14.53.217.16:3000/uploads/" + temp
 		companies = append(companies, company)
 	}
 

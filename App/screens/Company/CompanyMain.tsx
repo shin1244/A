@@ -14,13 +14,15 @@ interface Company {
   company_building: string;
 }
 
+
+
 function CompanyMain() {
   const [companies, setCompanies] = useState<Company[]>([]);
 
   const navigation = useNavigation();
 
   useEffect(() => {
-    axios.get("http://211.114.210.110:3000/companies")
+    axios.get("http://14.53.217.16:3000/companies")
       .then(res => {setCompanies(res.data)})
       .catch(error => {
         console.log(error)
@@ -44,9 +46,13 @@ function CompanyMain() {
 }
 
 const CompanyList = ({ companies }: { companies: Company[] }) => {
+  const navigation = useNavigation();
   return (
     companies.map((company, index) => (
-      <TouchableOpacity key={index} style={styles.CompanyList}>
+      <TouchableOpacity 
+      key={index} 
+      onPress={() => navigation.navigate('CompanyDetail', { companyId: company.id })}
+      style={styles.CompanyList}>
         <Image source={{ uri: company.company_logo }} style={styles.logo} />
         
         <View style={styles.middleSection}>
