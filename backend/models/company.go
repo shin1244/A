@@ -12,6 +12,7 @@ type Company struct {
 
 type DBHandler interface {
 	GetCompanies() []*Company
+	GetCompany(id int) *Company
 	AddCompany(company *Company) *Company
 	RemoveCompany(id int) bool
 	Close()

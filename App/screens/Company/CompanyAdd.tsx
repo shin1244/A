@@ -58,7 +58,7 @@ const CompanyAdd = () => {
     }
   
     try {
-      await axios.post('http://14.53.217.16:3000/companies', formData, {
+      await axios.post('http://14.53.192.85:3000/companies', formData, {
         headers: {
           'Content-Type': 'multipart/form-data', // 파일 업로드를 위해 Content-Type을 설정
         },

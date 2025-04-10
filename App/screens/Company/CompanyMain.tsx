@@ -22,7 +22,7 @@ function CompanyMain() {
   const navigation = useNavigation();
 
   useEffect(() => {
-    axios.get("http://14.53.217.16:3000/companies")
+    axios.get("http://14.53.192.85:3000/companies")
       .then(res => {setCompanies(res.data)})
       .catch(error => {
         console.log(error)

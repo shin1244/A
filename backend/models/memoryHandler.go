@@ -32,6 +32,10 @@ func (m *memoryHandler) Close() {
 
 }
 
+func (m *memoryHandler) GetCompany(id int) *Company {
+	return m.companyMap[id]
+}
+
 func newMemoryHandler() DBHandler {
 	m := &memoryHandler{}
 	m.companyMap = make(map[int]*Company)

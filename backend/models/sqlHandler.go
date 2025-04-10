@@ -24,11 +24,31 @@ func (s *sqlHandler) GetCompanies() []*Company {
 		if err != nil {
 			panic(err)
 		}
-		company.CompanyLogo = "http://14.53.217.16:3000/uploads/" + temp
+		company.CompanyLogo = "http://14.53.192.85:3000/uploads/" + temp
 		companies = append(companies, company)
 	}
 
 	return companies
+}
+
+func (s *sqlHandler) GetCompany(id int) *Company {
+	row := s.db.QueryRow("SELECT * FROM company_table WHERE company_id = ?", id)
+
+	company := &Company{}
+	err := row.Scan(
+		&company.CompanyID,
+		&company.CompanyName,
+		&company.CompanyYear,
+		&company.Rating,
+		&company.CompanyLogo,
+		&company.CompanyAddress,
+		&company.CompanyBuilding,
+	)
+	if err != nil {
+		return &Company{}
+	}
+
+	return company
 }
 
 func (s *sqlHandler) AddCompany(company *Company) *Company {

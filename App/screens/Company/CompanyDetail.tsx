@@ -16,7 +16,7 @@ const CompanyDetail = ({ route }) => {
   const [company, setCompany] = useState<Company | null>(null);
 
   useEffect(() => {
-    axios.get(`http://14.53.217.16:3000/companies/${companyId}`) // ← 여기서 id 기반으로 요청
+    axios.get(`http://14.53.192.85:3000/companies/${companyId}`) // ← 여기서 id 기반으로 요청
       .then(res => setCompany(res.data))
       .catch(err => console.error(err));
   }, [companyId]);

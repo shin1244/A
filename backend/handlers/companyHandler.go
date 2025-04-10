@@ -23,10 +23,15 @@ func (c *CompanyHandler) getCompaniesHandler(w http.ResponseWriter, r *http.Requ
 }
 
 func (c *CompanyHandler) getCompanyHandler(w http.ResponseWriter, r *http.Request) {
-	vars := mux.Vars(r)
-	idStr := vars["id"]
-	fmt.Println(idStr)
+	idStr := mux.Vars(r)["id"]
+	id, err := strconv.Atoi(idStr)
+	if err != nil {
+		panic(err)
+	}
 	fmt.Println("회사 상세 페이지 요청 받음")
+	fmt.Println(c.db.GetCompany(id))
+
+	rd.JSON(w, http.StatusOK, c.db.GetCompany(id))
 }
 
 func (c *CompanyHandler) addCompanyHandler(w http.ResponseWriter, r *http.Request) {
